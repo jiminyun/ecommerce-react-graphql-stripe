@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import Loader from "./Loader";
 import "./App.css";
 import Strapi from "strapi-sdk-javascript/build/main";
+import { getCart } from "../utils";
 const apiUrl = process.env.API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
 
@@ -41,7 +42,10 @@ class App extends Component {
         }
       });
       // console.log(response);
-      this.setState({ brands: response.data.brands, loadingBrands: false });
+      this.setState({
+        brands: response.data.brands,
+        loadingBrands: false
+      });
     } catch (err) {
       console.error(err);
       this.setState({ loadingBrands: false });
